@@ -1,4 +1,4 @@
 paper-header-panel
 ===================
 
-Paper Header Panel
+See the [component page](http://polymer.github.io/core-header-panel) for more information.
