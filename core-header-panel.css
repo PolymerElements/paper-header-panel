@@ -1,0 +1,28 @@
+/*
+Copyright 2013 The Polymer Authors. All rights reserved.
+Use of this source code is governed by a BSD-style
+license that can be found in the LICENSE file.
+*/
+
+:host {
+  display: block;
+}
+
+.header-panel-container {
+  position: relative;
+  height: 100%;
+  overflow: auto;
+}
+
+#mainContainer {
+  position: relative;
+  overflow: auto;
+}
+
+:host([mode=scroll]) #mainContainer {
+  overflow: visible;
+}
+
+:host([mode=scroll]) ::content#mainContent > * {
+  overflow: hidden;
+}

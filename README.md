@@ -1,4 +1,4 @@
-core-header-panel
-=================
+paper-header-panel
+===================
 
-Simple panel with top and bottom panes
+Paper Header Panel

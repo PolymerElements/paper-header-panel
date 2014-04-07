@@ -1,0 +1,139 @@
+<!doctype html>
+<html>
+  <head>
+    <title>paper-header-panel: example2</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    
+    <script src="../../platform/platform.js"></script>
+    
+    <link rel="import" href="../paper-header-panel.html">
+    <link rel="import" href="../../font-roboto2/roboto2.html">
+    <link rel="import" href="../../paper-appbar/paper-appbar.html">
+    <link rel="import" href="../../paper-drawer-panel/paper-drawer-panel.html">
+    <link rel="import" href="../../paper-icon-button/paper-icon-button.html">
+    <link rel="import" href="../../polymer-ui-pages/polymer-ui-pages.html">
+    <link rel="import" href="../../polymer-ui-menu/polymer-ui-menu.html">
+    <link rel="import" href="../../polymer-ui-menu-item/polymer-ui-menu-item.html">
+    
+    <style>
+    
+      body {
+        font-family: Roboto2, 'Helvetica Neue', Helvetica, Arial;
+        color: #333;
+        margin: 0;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        -webkit-tap-highlight-color: rgba(0,0,0,0);
+        -webkit-touch-callout: none;
+      }
+      
+      paper-drawer-panel {
+        background-color: #eee;
+      }
+      
+      [drawer] {
+        background-color: #fff;
+        border-right: 1px solid #ccc;
+      }
+      
+      paper-header-panel {
+        max-width: 640px;
+        background-color: white;
+        box-shadow: rgba(0, 0, 0, 0.14902) 0px 2px 4px, rgba(0, 0, 0, 0.14902) 0px 0px 3px;
+      }
+      
+      paper-header-panel[mode="standard"], 
+      paper-header-panel[mode="waterfall"], 
+      paper-header-panel[mode="waterfall-tall"] {
+        height: 100%;
+      }
+      
+      paper-appbar {
+        background-color: #4285F4;
+        color: #D7E5FC;
+      }
+      
+      #headerPanelContent {
+        height: 3000px;
+        padding: 50px 30px;
+        background: linear-gradient(rgb(214, 227, 231), rgb(114, 185, 209));
+      }
+      
+    </style>
+    
+  </head>
+  
+  <body unresolved>
+  
+    <paper-drawer-panel class="main-center-margin">
+    
+      <div drawer>
+      
+        <paper-appbar class="tall seamed">
+          <div>Toolbar & Scrolling</div>
+        </paper-appbar>
+        
+        <polymer-ui-menu id="menu" selected="standard">
+          <polymer-ui-menu-item name="standard" label="Standard"></polymer-ui-menu-item>
+          <polymer-ui-menu-item name="waterfall" label="Waterfall"></polymer-ui-menu-item>
+          <polymer-ui-menu-item name="waterfall-tall" label="Waterfall (Tall Toolbar)"></polymer-ui-menu-item>
+          <polymer-ui-menu-item name="scroll" label="Scroll"></polymer-ui-menu-item>
+        </polymer-ui-menu>
+        
+      </div>
+        
+      <paper-header-panel main>
+      
+        <paper-appbar id="headerPanelAppbar">
+          <paper-icon-button icon="menu" onclick="togglePanel()"></paper-icon-button>
+          <div class="bottom" style="margin-left: 62px;">Toolbar</div>
+          <div flex></div>
+          <paper-icon-button icon="search"></paper-icon-button>
+        </paper-appbar>
+        
+        <div id="headerPanelContent"></div>
+        
+      </paper-header-panel>
+      
+    </paper-drawer-panel>
+    
+    <script>
+    
+      var desc = {
+        standard: 'The toolbar is a step above the paper. The toolbar will consume the paper at the point of entry, preventing it from passing through to the opposite side.',
+        waterfall: 'As per standard clip, but toolbar is initially presented as seamed with paper, but then separates to form the step.',
+        'waterfall-tall': 'As the user scrolls, the toolbar separates (forming an edge) while condensing. (Note: Currently just doing simple transition right now.)',
+        scroll: 'The toolbar keeps its seam with the paper, and is pushed off screen.'
+      };
+      
+      var drawerPanel;
+      
+      document.addEventListener('polymer-ready', function() {
+        drawerPanel = document.querySelector('paper-drawer-panel');
+        var menu = document.querySelector('#menu');
+        var headerPanel = document.querySelector('paper-header-panel');
+        var headerPanelAppbar = document.querySelector('#headerPanelAppbar');
+        var headerPanelContent = document.querySelector('#headerPanelContent');
+        
+        menu.addEventListener('polymer-select', function(e) {
+          if (e.detail.isSelected) {
+            headerPanel.mode = menu.selected;
+            if (headerPanel.mode !== 'waterfall-tall') {
+              headerPanelAppbar.classList.remove('tall');
+            }
+            headerPanelContent.textContent = desc[menu.selected] || '';
+            drawerPanel.selected = 'main';
+          }
+        });
+      });
+      
+      function togglePanel() {
+        drawerPanel.togglePanel();
+      }
+    </script>
+  </body>
+</html>
