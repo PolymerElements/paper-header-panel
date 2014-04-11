@@ -63,85 +63,82 @@ partially covering the header.
 <link rel="import" href="../polymer/polymer.html">
 
 <polymer-element name="core-header-panel" attributes="mode">
+<template>
 
-  <template>
+  <link rel="stylesheet" href="core-header-panel.css">
+  <link rel="stylesheet" href="../core-layout/core-layout.css">
+  
+  <div class="header-panel-container" core-flow="v" on-scroll="{{scroll}}">
 
-    <link rel="stylesheet" href="core-header-panel.css">
-    <link rel="stylesheet" href="../core-layout/core-layout.css">
-    
-    <div class="header-panel-container" core-flow="v" on-scroll="{{scroll}}">
+    <content id="headerContent" select="core-toolbar, paper-toolbar, .core-header"></content>
 
-      <content id="headerContent" select="core-toolbar, paper-toolbar, .core-header"></content>
-
-      <div id="mainContainer" core-flex on-scroll="{{scroll}}">
-        <content id="mainContent" select="*"></content>
-      </div>
-
+    <div id="mainContainer" core-flex on-scroll="{{scroll}}">
+      <content id="mainContent" select="*"></content>
     </div>
 
-  </template>
+  </div>
 
-  <script>
+</template>
+<script>
 
-    Polymer('core-header-panel', {
+  Polymer('core-header-panel', {
 
-      /**
-       * Controls header and scrolling behavior. Options are
-       * `standard`, `waterfall`, `waterfall-tall`, `scroll` and `cover`.
-       * Default is `standard`.
-       *
-       * `standard`: The header is a step above the panel. The header will consume the 
-       * panel at the point of entry, preventing it from passing through to the 
-       * opposite side.
-       *
-       * `waterfall`: Similar to standard mode, but header is initially presented as 
-       * seamed with panel, but then separates to form the step.
-       *
-       * `waterfall-tall`: The header is initially taller (`tall` class is added to 
-       * the header).  As the user scrolls, the header separates (forming an edge)
-       * while condensing (`tall` class is removed from the header).
-       *
-       * `scroll`: The header keeps its seam with the panel, and is pushed off screen.
-       *
-       * `cover`: The panel covers the whole `core-header-panel` including the
-       * header. This allows user to style the panel in such a way that the panel is
-       * partially covering the header.
-       *
-       * @attribute mode
-       * @type string
-       * @default ''
-       */
-      mode: '',
+    /**
+     * Controls header and scrolling behavior. Options are
+     * `standard`, `waterfall`, `waterfall-tall`, `scroll` and `cover`.
+     * Default is `standard`.
+     *
+     * `standard`: The header is a step above the panel. The header will consume the 
+     * panel at the point of entry, preventing it from passing through to the 
+     * opposite side.
+     *
+     * `waterfall`: Similar to standard mode, but header is initially presented as 
+     * seamed with panel, but then separates to form the step.
+     *
+     * `waterfall-tall`: The header is initially taller (`tall` class is added to 
+     * the header).  As the user scrolls, the header separates (forming an edge)
+     * while condensing (`tall` class is removed from the header).
+     *
+     * `scroll`: The header keeps its seam with the panel, and is pushed off screen.
+     *
+     * `cover`: The panel covers the whole `core-header-panel` including the
+     * header. This allows user to style the panel in such a way that the panel is
+     * partially covering the header.
+     *
+     * @attribute mode
+     * @type string
+     * @default ''
+     */
+    mode: '',
 
-      ready: function() {
-        this.scroll();
-      },
+    ready: function() {
+      this.scroll();
+    },
 
-      modeChanged: function() {
-        this.scroll();
-      },
+    modeChanged: function() {
+      this.scroll();
+    },
 
-      get header() {
-        return this.$.headerContent.getDistributedNodes()[0];
-      },
+    get header() {
+      return this.$.headerContent.getDistributedNodes()[0];
+    },
 
-      scroll: function() {
-        var seamedMode = {'waterfall': 1, 'waterfall-tall': 1, 'scroll': 1}; 
-        var tallMode = {'waterfall-tall': 1};
-        var atTop = (this.$.mainContainer.scrollTop === 0);
-        var header = this.header;
-        if (header) {
-          if (seamedMode[this.mode]) {
-            header.classList.toggle('seamed', atTop);
-          }
-          if (tallMode[this.mode]) {
-            header.classList.toggle('tall', atTop);
-          }
+    scroll: function() {
+      var seamedMode = {'waterfall': 1, 'waterfall-tall': 1, 'scroll': 1}; 
+      var tallMode = {'waterfall-tall': 1};
+      var atTop = (this.$.mainContainer.scrollTop === 0);
+      var header = this.header;
+      if (header) {
+        if (seamedMode[this.mode]) {
+          header.classList.toggle('seamed', atTop);
+        }
+        if (tallMode[this.mode]) {
+          header.classList.toggle('tall', atTop);
         }
       }
+    }
 
-    });
+  });
 
-  </script>
-
+</script>
 </polymer-element>
