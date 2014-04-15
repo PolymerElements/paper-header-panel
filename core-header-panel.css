@@ -17,13 +17,39 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   overflow: auto;
 }
 
+.panel-container {
+  position: relative;
+}
+
 #mainContainer {
-  /* position: relative; */
+  position: relative;
   overflow: auto;
+}
+
+#dropShadow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  box-shadow: inset 0px 5px 6px -3px rgba(0, 0, 0, 0.4);
+}
+
+#dropShadow.hidden {
+  display: none;
 }
 
 :host([mode=scroll]) #mainContainer {
   overflow: visible;
+}
+
+/* @polyfill :host([mode=scroll]) #mainContainer > * */
+:host([mode=scroll]) ::content#mainContent > * {
+  overflow: hidden;
+}
+
+:host([mode=cover]) .panel-container {
+  position: static;
 }
 
 :host([mode=cover]) #mainContainer {
@@ -38,9 +64,4 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 /* @polyfill :host([mode=cover]) #mainContainer > * */
 :host([mode=cover]) ::content#mainContent > * {
   pointer-events: visible;
-}
-
-/* @polyfill :host([mode=scroll]) #mainContainer > * */
-:host([mode=scroll]) ::content#mainContent > * {
-  overflow: hidden;
 }

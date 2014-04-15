@@ -8,7 +8,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <!--
-`core-header-panel` contains a header section and a content section. Special
+`core-header-panel` contains a header section and a content panel section. Special
 support is provided for scrolling modes when one uses a core-toolbar or equivalent
 for the header section.
 
@@ -29,11 +29,13 @@ Example:
       <div>Content goes here...</div>
     </core-header-panel>
 
-There are five different modes of header and scrolling behaviors.
+There are six different modes of header and scrolling behaviors.
 
 `standard`: The header is a step above the panel. The header will consume the 
 panel at the point of entry, preventing it from passing through to the 
 opposite side.
+
+`seamed`: The header is presented as seamed with the panel.
 
 `waterfall`: Similar to standard mode, but header is initially presented as 
 seamed with panel, but then separates to form the step.
@@ -72,8 +74,14 @@ partially covering the header.
 
     <content id="headerContent" select="core-toolbar, paper-toolbar, .core-header"></content>
 
-    <div id="mainContainer" core-flex on-scroll="{{scroll}}">
-      <content id="mainContent" select="*"></content>
+    <div class="panel-container" core-flow core-flex>
+    
+      <div id="mainContainer" core-flex on-scroll="{{scroll}}">
+        <content id="mainContent" select="*"></content>
+      </div>
+      
+      <div id="dropShadow" class="hidden"></div>
+      
     </div>
 
   </div>
@@ -85,12 +93,14 @@ partially covering the header.
 
     /**
      * Controls header and scrolling behavior. Options are
-     * `standard`, `waterfall`, `waterfall-tall`, `scroll` and `cover`.
+     * `standard`, `seamed`, `waterfall`, `waterfall-tall`, `scroll` and `cover`.
      * Default is `standard`.
      *
      * `standard`: The header is a step above the panel. The header will consume the 
      * panel at the point of entry, preventing it from passing through to the 
      * opposite side.
+     *
+     * `seamed`: The header is presented as seamed with the panel.
      *
      * `waterfall`: Similar to standard mode, but header is initially presented as 
      * seamed with panel, but then separates to form the step.
@@ -124,14 +134,14 @@ partially covering the header.
     },
 
     scroll: function() {
-      var seamedMode = {'waterfall': 1, 'waterfall-tall': 1, 'scroll': 1}; 
+      var seamedMode = {'waterfall': 1, 'waterfall-tall': 1, 'scroll': 1};
+      var noShadow = {'seamed': 1, 'cover': 1};
       var tallMode = {'waterfall-tall': 1};
       var atTop = (this.$.mainContainer.scrollTop === 0);
       var header = this.header;
       if (header) {
-        if (seamedMode[this.mode]) {
-          header.classList.toggle('seamed', atTop);
-        }
+        this.$.dropShadow.classList.toggle('hidden', atTop && 
+            seamedMode[this.mode] || noShadow[this.mode]);
         if (tallMode[this.mode]) {
           header.classList.toggle('tall', atTop);
         }
