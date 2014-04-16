@@ -70,11 +70,11 @@ partially covering the header.
   <link rel="stylesheet" href="core-header-panel.css">
   <link rel="stylesheet" href="../core-layout/core-layout.css">
   
-  <div class="header-panel-container" core-flow="v" on-scroll="{{scroll}}">
+  <div class="header-panel-container core-v" on-scroll="{{scroll}}">
 
     <content id="headerContent" select="core-toolbar, paper-toolbar, .core-header"></content>
 
-    <div class="panel-container" core-flow core-flex>
+    <div class="panel-container core-h" core-flex>
     
       <div id="mainContainer" core-flex on-scroll="{{scroll}}">
         <content id="mainContent" select="*"></content>
