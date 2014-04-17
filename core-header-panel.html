@@ -63,6 +63,7 @@ partially covering the header.
 -->
 
 <link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../core-layout/core-layout.html">
 
 <polymer-element name="core-header-panel" attributes="mode">
 <template>
@@ -70,7 +71,9 @@ partially covering the header.
   <link rel="stylesheet" href="core-header-panel.css">
   <link rel="stylesheet" href="../core-layout/core-layout.css">
   
-  <div class="header-panel-container core-v" on-scroll="{{scroll}}">
+  <core-layout vertical></core-layout>
+  
+  <div class="header-panel-container core-v" core-flex on-scroll="{{scroll}}">
 
     <content id="headerContent" select="core-toolbar, paper-toolbar, .core-header"></content>
 
