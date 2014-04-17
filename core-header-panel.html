@@ -140,13 +140,15 @@ partially covering the header.
       var seamedMode = {'waterfall': 1, 'waterfall-tall': 1, 'scroll': 1};
       var noShadow = {'seamed': 1, 'cover': 1};
       var tallMode = {'waterfall-tall': 1};
-      var atTop = (this.$.mainContainer.scrollTop === 0);
+      var main = this.$.mainContainer;
+      var atTop = (main.scrollTop === 0);
       var header = this.header;
       if (header) {
         this.$.dropShadow.classList.toggle('hidden', atTop && 
             seamedMode[this.mode] || noShadow[this.mode]);
         if (tallMode[this.mode]) {
-          header.classList.toggle('tall', atTop);
+          var d = main.scrollHeight - main.offsetHeight > header.offsetHeight;
+          header.classList.toggle('tall', !d || atTop);
         }
       }
     }
