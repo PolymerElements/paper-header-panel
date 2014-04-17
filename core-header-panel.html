@@ -65,7 +65,7 @@ partially covering the header.
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../core-layout/core-layout.html">
 
-<polymer-element name="core-header-panel" attributes="mode">
+<polymer-element name="core-header-panel">
 <template>
 
   <link rel="stylesheet" href="core-header-panel.css">
@@ -94,35 +94,37 @@ partially covering the header.
 
   Polymer('core-header-panel', {
 
-    /**
-     * Controls header and scrolling behavior. Options are
-     * `standard`, `seamed`, `waterfall`, `waterfall-tall`, `scroll` and `cover`.
-     * Default is `standard`.
-     *
-     * `standard`: The header is a step above the panel. The header will consume the 
-     * panel at the point of entry, preventing it from passing through to the 
-     * opposite side.
-     *
-     * `seamed`: The header is presented as seamed with the panel.
-     *
-     * `waterfall`: Similar to standard mode, but header is initially presented as 
-     * seamed with panel, but then separates to form the step.
-     *
-     * `waterfall-tall`: The header is initially taller (`tall` class is added to 
-     * the header).  As the user scrolls, the header separates (forming an edge)
-     * while condensing (`tall` class is removed from the header).
-     *
-     * `scroll`: The header keeps its seam with the panel, and is pushed off screen.
-     *
-     * `cover`: The panel covers the whole `core-header-panel` including the
-     * header. This allows user to style the panel in such a way that the panel is
-     * partially covering the header.
-     *
-     * @attribute mode
-     * @type string
-     * @default ''
-     */
-    mode: '',
+    publish: {
+      /**
+       * Controls header and scrolling behavior. Options are
+       * `standard`, `seamed`, `waterfall`, `waterfall-tall`, `scroll` and `cover`.
+       * Default is `standard`.
+       *
+       * `standard`: The header is a step above the panel. The header will consume the 
+       * panel at the point of entry, preventing it from passing through to the 
+       * opposite side.
+       *
+       * `seamed`: The header is presented as seamed with the panel.
+       *
+       * `waterfall`: Similar to standard mode, but header is initially presented as 
+       * seamed with panel, but then separates to form the step.
+       *
+       * `waterfall-tall`: The header is initially taller (`tall` class is added to 
+       * the header).  As the user scrolls, the header separates (forming an edge)
+       * while condensing (`tall` class is removed from the header).
+       *
+       * `scroll`: The header keeps its seam with the panel, and is pushed off screen.
+       *
+       * `cover`: The panel covers the whole `core-header-panel` including the
+       * header. This allows user to style the panel in such a way that the panel is
+       * partially covering the header.
+       *
+       * @attribute mode
+       * @type string
+       * @default ''
+       */
+      mode: {value: '', reflect: true}
+    },
 
     ready: function() {
       this.scroll();
