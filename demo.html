@@ -17,7 +17,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <link rel="import" href="../core-toolbar/core-toolbar.html">
     <link rel="import" href="../core-icon-button/core-icon-button.html">
 
-    <style>
+    <style shim-shadowdom>
 
       body {
         font-family: sans-serif;
@@ -28,6 +28,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         width: 320px;
         height: 400px;
         margin: 5px;
+      }
+      
+      core-header-panel[mode=cover]::shadow #mainContainer {
+        left: 70px;
       }
 
       core-toolbar {
@@ -91,7 +95,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <core-icon-button icon="menu"></core-icon-button>
         <div>cover</div>
       </core-toolbar>
-      <div class="content" style="margin: 60px 60px 60px 70px;"></div>
+      <div class="content" style="margin: 60px 60px 60px 0;"></div>
     </core-header-panel>
 
   </body>

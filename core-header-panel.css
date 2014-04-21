@@ -53,10 +53,4 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   right: 0;
   bottom: 0;
   left: 0;
-  pointer-events: none;
-}
-
-/* @polyfill :host([mode=cover]) #mainContainer > * */
-:host([mode=cover]) ::content#mainContent > * {
-  pointer-events: visible;
 }

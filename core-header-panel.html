@@ -79,7 +79,7 @@ partially covering the header.
 
     <div class="panel-container core-h" core-flex>
     
-      <div id="mainContainer" core-flex on-scroll="{{scroll}}">
+      <div id="mainContainer" core-flex?="{{mode !== 'cover'}}" on-scroll="{{scroll}}">
         <content id="mainContent" select="*"></content>
       </div>
       
