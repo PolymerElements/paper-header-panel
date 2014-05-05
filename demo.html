@@ -23,7 +23,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       core-header-panel {
         float: left;
-        width: 320px;
+        width: 360px;
         height: 400px;
         margin: 5px;
       }
@@ -35,7 +35,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       .core-header {
         height: 60px;
         line-height: 60px;
-        font-size: 20px;
+        font-size: 18px;
         padding: 0 10px;
         background-color: #4F7DC9;
         color: #FFF;
@@ -45,9 +45,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       .core-header.tall {
         height: 180px;
       }
+      
+      .core-header.medium-tall {
+        height: 120px;
+      }
 
       .content {
-        height: 1000px;
+        height: 2000px;
         background: linear-gradient(rgb(214, 227, 231), lightblue);
       }
 
@@ -76,6 +80,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <div class="core-header">waterfall-tall</div>
       <div class="content"></div>
     </core-header-panel>
+    
+    <core-header-panel mode="waterfall-tall" tallClass="medium-tall">
+      <div class="core-header">waterfall-tall (tallClass: medium-tall)</div>
+      <div class="content"></div>
+    </core-header-panel>
 
     <core-header-panel mode="scroll">
       <div class="core-header">scroll</div>
@@ -85,6 +94,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <core-header-panel mode="cover">
       <div class="core-header tall">cover</div>
       <div class="content" style="margin: 60px 60px 60px 0;"></div>
+    </core-header-panel>
+    
+    <core-header-panel mode="reveal">
+      <div class="core-header">reveal</div>
+      <div class="content"></div>
     </core-header-panel>
 
   </body>

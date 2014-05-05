@@ -29,33 +29,7 @@ Example:
       <div>Content goes here...</div>
     </core-header-panel>
 
-There are six different modes of header and scrolling behaviors.
-
-`standard`: The header is a step above the panel. The header will consume the 
-panel at the point of entry, preventing it from passing through to the 
-opposite side.
-
-`seamed`: The header is presented as seamed with the panel.
-
-`waterfall`: Similar to standard mode, but header is initially presented as 
-seamed with panel, but then separates to form the step.
-
-`waterfall-tall`: The header is initially taller (`tall` class is added to 
-the header).  As the user scrolls, the header separates (forming an edge)
-while condensing (`tall` class is removed from the header).
-
-`scroll`: The header keeps its seam with the panel, and is pushed off screen.
-
-`cover`: The panel covers the whole `core-header-panel` including the
-header. This allows user to style the panel in such a way that the panel is
-partially covering the header.
- 
-    <core-header-panel mode="cover">
-      <core-appbar class="tall">
-        <core-icon-button icon="menu"></core-icon-button>
-      </core-appbar>
-      <div class="content" style="margin: 60px"></div>
-    </core-header-panel>
+Use `mode` to controls the header and scrolling behavior.
 
 @group Polymer Core Elements
 @element core-header-panel
@@ -69,25 +43,22 @@ partially covering the header.
 <template>
 
   <link rel="stylesheet" href="core-header-panel.css">
-  <link rel="stylesheet" href="../core-layout/core-layout.css">
   
-  <core-layout vertical></core-layout>
-  
-  <div class="header-panel-container core-v" core-flex on-scroll="{{scroll}}">
+  <core-layout id="outerContainer" vertical on-scroll="{{scroll}}">
 
-    <content id="headerContent" select="core-toolbar, paper-toolbar, .core-header"></content>
+    <content id="headerContent" select="core-toolbar, .core-header"></content>
 
-    <div class="panel-container core-h" core-flex>
+    <core-layout id="mainPanel" core-flex>
     
-      <div id="mainContainer" core-flex?="{{mode !== 'cover'}}" on-scroll="{{scroll}}">
+      <div id="mainContainer" core-flex?="{{mode !== 'cover' && mode != 'reveal'}}" on-scroll="{{scroll}}">
         <content id="mainContent" select="*"></content>
       </div>
       
-      <div id="dropShadow" class="hidden"></div>
+      <div id="dropShadow"></div>
       
-    </div>
+    </core-layout>
 
-  </div>
+  </core-layout>
 
 </template>
 <script>
@@ -97,7 +68,8 @@ partially covering the header.
     publish: {
       /**
        * Controls header and scrolling behavior. Options are
-       * `standard`, `seamed`, `waterfall`, `waterfall-tall`, `scroll` and `cover`.
+       * `standard`, `seamed`, `waterfall`, `waterfall-tall`, 
+       * `waterfall-medium-tall`, `scroll` and `cover`.
        * Default is `standard`.
        *
        * `standard`: The header is a step above the panel. The header will consume the 
@@ -118,41 +90,94 @@ partially covering the header.
        * `cover`: The panel covers the whole `core-header-panel` including the
        * header. This allows user to style the panel in such a way that the panel is
        * partially covering the header.
+       * 
+       *     <core-header-panel mode="cover">
+       *       <core-appbar class="tall">
+       *         <core-icon-button icon="menu"></core-icon-button>
+       *       </core-appbar>
+       *       <div class="content" style="margin: 60px;"></div>
+       *     </core-header-panel>
        *
        * @attribute mode
        * @type string
        * @default ''
        */
-      mode: {value: '', reflect: true}
+      mode: {value: '', reflect: true},
+      
+      /**
+       * The class used in waterfall-tall mode.  Change this if the header
+       * accepts a different class for toggling height, e.g. "medium-tall"
+       *
+       * @attribute tallClass
+       * @type string
+       * @default 'tall'
+       */
+      tallClass: 'tall',
+      
+      /**
+       * If true, the drop-shadow is always shown no matter what mode is set to.
+       *
+       * @attribute shadow
+       * @type boolean
+       * @default false
+       */
+      shadow: false,
+      
     },
-
-    ready: function() {
-      this.scroll();
+    
+    prevScrollTop: 0,
+    
+    attached: function() {
+      this.async('scroll', null, 100);
     },
 
     modeChanged: function() {
+      this.reset();
       this.scroll();
     },
 
     get header() {
       return this.$.headerContent.getDistributedNodes()[0];
     },
+    
+    reset: function() {
+      this.$.mainContainer.style = null;
+      this.header.style = null;
+    },
 
     scroll: function() {
-      var seamedMode = {'waterfall': 1, 'waterfall-tall': 1, 'scroll': 1};
-      var noShadow = {'seamed': 1, 'cover': 1};
+      var shadowMode = {'waterfall': 1, 'waterfall-tall': 1, 'reveal': 1};
+      var noShadow = {'seamed': 1, 'cover': 1, 'scroll': 1};
       var tallMode = {'waterfall-tall': 1};
+      
       var main = this.$.mainContainer;
-      var atTop = (main.scrollTop === 0);
       var header = this.header;
+      
+      var sTop = main.scrollTop;
+      var atTop = sTop === 0;
+      
       if (header) {
-        this.$.dropShadow.classList.toggle('hidden', atTop && 
-            seamedMode[this.mode] || noShadow[this.mode]);
+        this.$.dropShadow.classList.toggle('hidden', !this.shadow &&
+            (atTop && shadowMode[this.mode] || noShadow[this.mode]));
+        
         if (tallMode[this.mode]) {
-          var d = main.scrollHeight - main.offsetHeight > header.offsetHeight;
-          header.classList.toggle('tall', !d || atTop);
+          header.classList.toggle(this.tallClass, atTop);
+        }
+        
+        if (this.mode === 'reveal') {
+          if (!this.headerHeight) {
+            this.headerHeight = header.offsetHeight;
+            main.style.paddingTop = this.headerHeight + 'px';
+          }
+          
+          this.y = Math.min(this.headerHeight, 
+              Math.max((this.y || 0) + (sTop - this.prevScrollTop), 0));
+          var s = header.style;
+          s.webkitTransform = s.transform = 'translateY(' + (-this.y) + 'px)';
         }
       }
+      
+      this.prevScrollTop = sTop;
     }
 
   });
