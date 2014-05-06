@@ -68,6 +68,7 @@ mode: cover
 /*
 mode: reveal
 */
+/*@polyfill :host([mode=reveal]) #outerContainer > .core-header, :host([mode=reveal]) #outerContainer > core-toolbar */
 :host([mode=reveal]) ::content#headerContent > * {
   z-index: 1;
 }
