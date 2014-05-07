@@ -64,24 +64,3 @@ mode: cover
   bottom: 0;
   left: 0;
 }
-
-/*
-mode: reveal
-*/
-/*@polyfill :host([mode=reveal]) #outerContainer > .core-header, :host([mode=reveal]) #outerContainer > core-toolbar */
-:host([mode=reveal]) ::content#headerContent > * {
-  z-index: 1;
-}
-
-:host([mode=reveal]) #mainPanel {
-  position: static;
-}
-
-:host([mode=reveal]) #mainContainer {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-}
-

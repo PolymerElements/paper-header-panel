@@ -50,7 +50,7 @@ Use `mode` to controls the header and scrolling behavior.
 
     <core-layout id="mainPanel" core-flex>
     
-      <div id="mainContainer" core-flex?="{{mode !== 'cover' && mode != 'reveal'}}" on-scroll="{{scroll}}">
+      <div id="mainContainer" core-flex?="{{mode !== 'cover'}}" on-scroll="{{scroll}}">
         <content id="mainContent" select="*"></content>
       </div>
       
@@ -122,17 +122,13 @@ Use `mode` to controls the header and scrolling behavior.
        * @default false
        */
       shadow: false,
-      
     },
     
-    prevScrollTop: 0,
-    
     attached: function() {
-      this.async('scroll', null, 100);
+      this.async('scroll');
     },
 
     modeChanged: function() {
-      this.reset();
       this.scroll();
     },
 
@@ -140,13 +136,8 @@ Use `mode` to controls the header and scrolling behavior.
       return this.$.headerContent.getDistributedNodes()[0];
     },
     
-    reset: function() {
-      this.$.mainContainer.style = null;
-      this.header.style = null;
-    },
-
     scroll: function() {
-      var shadowMode = {'waterfall': 1, 'waterfall-tall': 1, 'reveal': 1};
+      var shadowMode = {'waterfall': 1, 'waterfall-tall': 1};
       var noShadow = {'seamed': 1, 'cover': 1, 'scroll': 1};
       var tallMode = {'waterfall-tall': 1};
       
@@ -163,21 +154,7 @@ Use `mode` to controls the header and scrolling behavior.
         if (tallMode[this.mode]) {
           header.classList.toggle(this.tallClass, atTop);
         }
-        
-        if (this.mode === 'reveal') {
-          if (!this.headerHeight) {
-            this.headerHeight = header.offsetHeight;
-            main.style.paddingTop = this.headerHeight + 'px';
-          }
-          
-          this.y = Math.min(this.headerHeight, 
-              Math.max((this.y || 0) + (sTop - this.prevScrollTop), 0));
-          var s = header.style;
-          s.webkitTransform = s.transform = 'translateY(' + (-this.y) + 'px)';
-        }
       }
-      
-      this.prevScrollTop = sTop;
     }
 
   });
