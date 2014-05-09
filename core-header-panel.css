@@ -64,3 +64,8 @@ mode: cover
   bottom: 0;
   left: 0;
 }
+
+:host([mode=cover]) #dropShadow {
+  position: static;
+  width: 100%;
+}
