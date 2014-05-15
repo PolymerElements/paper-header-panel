@@ -2,6 +2,6 @@
   "name": "core-header-panel",
   "private": true,
   "dependencies": {
-    "core-layout": "Polymer/core-layout#master"
+    "polymer": "Polymer/polymer#master"
   }
 }
