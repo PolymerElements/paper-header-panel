@@ -161,7 +161,7 @@ Use `mode` to control the header and scrolling behavior.
        * @type boolean
        * @default false
        */
-      shadow: false,
+      shadow: false
     },
     
     domReady: function() {
@@ -200,7 +200,8 @@ Use `mode` to control the header and scrolling behavior.
             (atTop && shadowMode[this.mode] || noShadow[this.mode]));
         
         if (tallMode[this.mode]) {
-          header.classList.toggle(this.tallClass, atTop);
+          header.classList.toggle(this.tallClass, atTop || 
+              main.scrollHeight < this.$.outerContainer.offsetHeight);
         }
         
         header.classList.toggle('animate', tallMode[this.mode]);
