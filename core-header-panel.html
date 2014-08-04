@@ -32,8 +32,7 @@ or, if you would prefer to do it in CSS, just give `html`, `body`, and `core-hea
       height: 100%;
     }
 
-Special
-support is provided for scrolling modes when one uses a core-toolbar or equivalent
+Special support is provided for scrolling modes when one uses a core-toolbar or equivalent
 for the header section.
 
 Example:
@@ -51,6 +50,13 @@ Example:
     <core-header-panel>
       <div class="core-header">Header</div>
       <div>Content goes here...</div>
+    </core-header-panel>
+    
+To have the content fits to the main area, use `fit` attribute.
+
+    <core-header-panel>
+      <div class="core-header">standard</div>
+      <div class="content" fit>content fits 100% below the header</div>
     </core-header-panel>
 
 Use `mode` to control the header and scrolling behavior.
