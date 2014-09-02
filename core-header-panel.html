@@ -170,11 +170,33 @@ Use `mode` to control the header and scrolling behavior.
       shadow: false
     },
     
+    animateDuration: 180,
+    
+    modeConfigs: {
+      shadowMode: {'waterfall': 1, 'waterfall-tall': 1},
+      noShadow: {'seamed': 1, 'cover': 1, 'scroll': 1},
+      tallMode: {'waterfall-tall': 1}
+    },
+    
     domReady: function() {
       this.async('scroll');
     },
 
-    modeChanged: function() {
+    modeChanged: function(old) {
+      var header = this.header;
+      if (header) {
+        var configs = this.modeConfigs;
+        // in tallMode it may add tallClass to the header; so do the cleanup
+        // when mode is changed from tallMode to not tallMode
+        if (configs.tallMode[old] && !configs.tallMode[this.mode]) {
+          header.classList.remove(this.tallClass);
+          this.async(function() {
+            header.classList.remove('animate');
+          }, null, this.animateDuration);
+          return;
+        }
+        header.classList.toggle('animate', configs.tallMode[this.mode]);
+      }
       this.scroll();
     },
 
@@ -194,31 +216,25 @@ Use `mode` to control the header and scrolling behavior.
     },
     
     scroll: function() {
-      var shadowMode = {'waterfall': 1, 'waterfall-tall': 1};
-      var noShadow = {'seamed': 1, 'cover': 1, 'scroll': 1};
-      var tallMode = {'waterfall-tall': 1};
-      
+      var configs = this.modeConfigs;
       var main = this.$.mainContainer;
       var header = this.header;
       
       var sTop = main.scrollTop;
       var atTop = sTop === 0;
       
-      if (header) {
-        this.$.dropShadow.classList.toggle('hidden', !this.shadow &&
-            (atTop && shadowMode[this.mode] || noShadow[this.mode]));
-        
-        if (tallMode[this.mode]) {
-          header.classList.toggle(this.tallClass, atTop || 
-              main.scrollHeight < this.$.outerContainer.offsetHeight);
-        }
-        
-        header.classList.toggle('animate', tallMode[this.mode]);
+      this.$.dropShadow.classList.toggle('hidden', !this.shadow &&
+          (atTop && configs.shadowMode[this.mode] || configs.noShadow[this.mode]));
+      
+      if (header && configs.tallMode[this.mode]) {
+        header.classList.toggle(this.tallClass, atTop ||
+            header.classList.contains(this.tallClass) && 
+            main.scrollHeight < this.$.outerContainer.offsetHeight);
       }
       
       this.fire('scroll', {target: this.scroller}, this, false);
     }
-
+    
   });
 
 </script>
