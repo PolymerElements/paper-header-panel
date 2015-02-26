@@ -5,7 +5,8 @@
     "The Polymer Authors"
   ],
   "dependencies": {
-    "polymer": "Polymer/polymer#master"
+    "polymer": "Polymer/polymer#master",
+    "layout": "Polymer/layout#master"
   },
   "devDependencies": {
     "webcomponentsjs": "~0.5.5",
