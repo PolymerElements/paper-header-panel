@@ -97,6 +97,8 @@ Use `mode` to control the header and scrolling behavior.
 
   (function() {
 
+    'use strict';
+
     var MODE_CONFIGS = {
       shadowMode: {'waterfall': 1, 'waterfall-tall': 1},
       noShadow: {'seamed': 1, 'cover': 1, 'scroll': 1},
@@ -229,6 +231,9 @@ Use `mode` to control the header and scrolling behavior.
       ready: function() {
         this.scrollHandler = this.scroll.bind(this);
         this.addListener();
+
+        // Run `scroll` logic once to initialze class names, etc.
+        this.scroll();
       },
 
       detached: function() {
@@ -274,7 +279,7 @@ Use `mode` to control the header and scrolling behavior.
       },
 
       get header() {
-        return this.$.headerContent.getDistributedNodes()[0];
+        return this.localDom.distributedNodes(this.$.headerContent)[0];
       },
 
       getScrollerForMode: function(mode) {
