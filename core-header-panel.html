@@ -84,7 +84,7 @@ Use `mode` to control the header and scrolling behavior.
           <content id="mainContent" select="*"></content>
         </div>
 
-        <div id="dropShadow"></div>
+        <div id="dropShadow" class$="[[dropShadowClass]]"></div>
 
       </div>
 
@@ -127,7 +127,8 @@ Use `mode` to control the header and scrolling behavior.
        */
 
       computed: {
-        mainContainerClass: 'calculateMainContainerClass(mode)'
+        dropShadowClass: 'calcDropShadowClass(atTop, mode, shadow)',
+        mainContainerClass: 'calcMainContainerClass(mode)'
       },
 
       published: {
@@ -204,13 +205,22 @@ Use `mode` to control the header and scrolling behavior.
 
       configure: function() {
         return {
+          atTop: true,
           mode: '',
           shadow: false,
           tallClass: 'tall'
         };
       },
 
-      calculateMainContainerClass: function(mode) {
+      calcDropShadowClass: function(atTop, mode, shadow) {
+        if (!this.shadow &&
+            (atTop && MODE_CONFIGS.shadowMode[this.mode] ||
+              MODE_CONFIGS.noShadow[this.mode])) {
+          return 'hidden';
+        }
+      },
+
+      calcMainContainerClass: function(mode) {
         if (mode !== 'cover') {
           return 'flex';
         }
@@ -283,18 +293,13 @@ Use `mode` to control the header and scrolling behavior.
       },
 
       scroll: function() {
-        var configs = MODE_CONFIGS;
         var main = this.$.mainContainer;
         var header = this.header;
 
-        var sTop = main.scrollTop;
-        var atTop = sTop === 0;
+        this.atTop = (main.scrollTop === 0);
 
-        this.$.dropShadow.classList.toggle('hidden', !this.shadow &&
-            (atTop && configs.shadowMode[this.mode] || configs.noShadow[this.mode]));
-
-        if (header && configs.tallMode[this.mode]) {
-          header.classList.toggle(this.tallClass, atTop ||
+        if (header && MODE_CONFIGS.tallMode[this.mode]) {
+          header.classList.toggle(this.tallClass, this.atTop ||
               header.classList.contains(this.tallClass) &&
               main.scrollHeight < this.$.outerContainer.offsetHeight);
         }
