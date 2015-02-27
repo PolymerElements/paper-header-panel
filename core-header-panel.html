@@ -80,11 +80,11 @@ Use `mode` to control the header and scrolling behavior.
 
       <div id="mainPanel" class="layout vertical flex">
 
-        <div id="mainContainer" class$="[[mainContainerClass]]">
+        <div id="mainContainer" class-name="[[mainContainerClass]]">
           <content id="mainContent" select="*"></content>
         </div>
 
-        <div id="dropShadow" class$="[[dropShadowClass]]"></div>
+        <div id="dropShadow" class-name="[[dropShadowClass]]"></div>
 
       </div>
 
@@ -98,6 +98,17 @@ Use `mode` to control the header and scrolling behavior.
   (function() {
 
     'use strict';
+
+    function classNames(obj) {
+      var classNames = [];
+      for (var key in obj) {
+        if (obj.hasOwnProperty(key) && obj[key]) {
+          classNames.push(key);
+        }
+      }
+
+      return classNames.join(' ');
+    }
 
     var MODE_CONFIGS = {
       shadowMode: {'waterfall': 1, 'waterfall-tall': 1},
@@ -178,10 +189,7 @@ Use `mode` to control the header and scrolling behavior.
          * @type string
          * @default ''
          */
-        mode: {
-          reflect: true,
-          type: String
-        },
+        mode: String,
 
         /**
          * If true, the drop-shadow is always shown no matter what mode is set to.
@@ -215,17 +223,17 @@ Use `mode` to control the header and scrolling behavior.
       },
 
       calcDropShadowClass: function(atTop, mode, shadow) {
-        if (!this.shadow &&
+        return classNames({
+          hidden: !this.shadow &&
             (atTop && MODE_CONFIGS.shadowMode[this.mode] ||
-              MODE_CONFIGS.noShadow[this.mode])) {
-          return 'hidden';
-        }
+              MODE_CONFIGS.noShadow[this.mode])
+        });
       },
 
       calcMainContainerClass: function(mode) {
-        if (mode !== 'cover') {
-          return 'flex';
-        }
+        return classNames({
+          flex: (mode !== 'cover')
+        });
       },
 
       ready: function() {
