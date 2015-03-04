@@ -222,10 +222,12 @@ Use `mode` to control the header and scrolling behavior.
       },
 
       calcDropShadowClass: function(atTop, mode, shadow) {
+        var needsShadow = atTop &&
+          MODE_CONFIGS.shadowMode[this.mode] ||
+          MODE_CONFIGS.noShadow[this.mode];
+
         return classNames({
-          hidden: !this.shadow &&
-            (atTop && MODE_CONFIGS.shadowMode[this.mode] ||
-              MODE_CONFIGS.noShadow[this.mode])
+          hidden: !this.shadow && needsShadow
         });
       },
 
