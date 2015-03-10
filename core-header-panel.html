@@ -71,7 +71,73 @@ Use `mode` to control the header and scrolling behavior.
 
 <dom-module id="core-header-panel">
 
-  <link rel="stylesheet" href="core-header-panel.css">
+  <style>
+    :host {
+      display: block;
+      position: relative;
+    }
+
+    #outerContainer {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+    }
+
+    #mainPanel {
+      position: relative;
+    }
+
+    #mainContainer {
+      position: relative;
+      overflow-y: auto;
+      overflow-x: hidden;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    #dropShadow {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      box-shadow: inset 0px 5px 6px -3px rgba(0, 0, 0, 0.4);
+    }
+
+    /*
+     * mode: scroll
+     */
+    :host([mode=scroll]) #mainContainer {
+      overflow: visible;
+    }
+
+    :host([mode=scroll]) #outerContainer {
+      overflow-y: auto;
+      overflow-x: hidden;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /*
+     * mode: cover
+     */
+    :host([mode=cover]) #mainPanel {
+      position: static;
+    }
+
+    :host([mode=cover]) #mainContainer {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+    }
+
+    :host([mode=cover]) #dropShadow {
+      position: static;
+      width: 100%;
+    }
+  </style>
 
   <template>
     <div id="outerContainer" class="layout vertical">
