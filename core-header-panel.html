@@ -139,12 +139,24 @@ Use `mode` to control the header and scrolling behavior.
        * @event scroll
        */
 
-      computed: {
-        dropShadowClass: 'calcDropShadowClass(atTop, mode, shadow)',
-        mainContainerClass: 'calcMainContainerClass(mode)'
-      },
+      properties: {
 
-      published: {
+        animateDuration: {
+          value: 200
+        },
+
+        atTop: {
+          value: true
+        },
+
+        dropShadowClass: {
+          computed: 'computeDropShadowClass(atTop, mode, shadow)'
+        },
+
+        mainContainerClass: {
+          computed: 'computeMainContainerClass(mode)'
+        },
+
         /**
          * Controls header and scrolling behavior. Options are
          * `standard`, `seamed`, `waterfall`, `waterfall-tall`, `scroll` and
@@ -189,7 +201,10 @@ Use `mode` to control the header and scrolling behavior.
          * @type string
          * @default ''
          */
-        mode: String,
+        mode: {
+          type: String,
+          value: ''
+        },
 
         /**
          * If true, the drop-shadow is always shown no matter what mode is set to.
@@ -198,7 +213,10 @@ Use `mode` to control the header and scrolling behavior.
          * @type boolean
          * @default false
          */
-        shadow: Boolean,
+        shadow: {
+          type: Boolean,
+          value: false
+        },
 
         /**
          * The class used in waterfall-tall mode.  Change this if the header
@@ -208,20 +226,14 @@ Use `mode` to control the header and scrolling behavior.
          * @type string
          * @default 'tall'
          */
-        tallClass: String
+        tallClass: {
+          type: String,
+          value: 'tall'
+        }
+
       },
 
-      configure: function() {
-        return {
-          animateDuration: 200,
-          atTop: true,
-          mode: '',
-          shadow: false,
-          tallClass: 'tall'
-        };
-      },
-
-      calcDropShadowClass: function(atTop, mode, shadow) {
+      computeDropShadowClass: function(atTop, mode, shadow) {
         var needsShadow = atTop &&
           MODE_CONFIGS.shadowMode[this.mode] ||
           MODE_CONFIGS.noShadow[this.mode];
@@ -231,7 +243,7 @@ Use `mode` to control the header and scrolling behavior.
         });
       },
 
-      calcMainContainerClass: function(mode) {
+      computeMainContainerClass: function(mode) {
         return classNames({
           flex: (mode !== 'cover')
         });
@@ -288,7 +300,7 @@ Use `mode` to control the header and scrolling behavior.
       },
 
       get header() {
-        return this.localDom.distributedNodes(this.$.headerContent)[0];
+        return Polymer.dom(this.$.headerContent).getDistributedNodes()[0];
       },
 
       getScrollerForMode: function(mode) {
