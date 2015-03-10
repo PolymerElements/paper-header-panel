@@ -300,7 +300,7 @@ Use `mode` to control the header and scrolling behavior.
       },
 
       get header() {
-        return Polymer.dom.distributedNodes(this.$.headerContent)[0];
+        return Polymer.dom(this.$.headerContent).getDistributedNodes()[0];
       },
 
       getScrollerForMode: function(mode) {
