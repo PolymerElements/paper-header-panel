@@ -111,10 +111,21 @@ Use `mode` to control the header and scrolling behavior.
     }
 
     var MODE_CONFIGS = {
-      shadowMode: {'waterfall': 1, 'waterfall-tall': 1},
-      noShadow: {'seamed': 1, 'cover': 1, 'scroll': 1},
-      tallMode: {'waterfall-tall': 1},
-      outerScroll: {'scroll': 1}
+      noShadow: {
+        cover: true,
+        scroll: true,
+        seamed: true
+      },
+      outerScroll: {
+        scroll: true
+      },
+      shadowMode: {
+        waterfall: true,
+        'waterfall-tall': true
+      },
+      tallMode: {
+        'waterfall-tall': true
+      }
     };
 
     Polymer({
