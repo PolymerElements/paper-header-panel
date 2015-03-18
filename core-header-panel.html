@@ -150,7 +150,7 @@ Use `mode` to control the header and scrolling behavior.
           <content id="mainContent" select="*"></content>
         </div>
 
-        <div id="dropShadow" class-name="[[_dropShadowClass]]"></div>
+        <div id="dropShadow" hidden$="[[_computeDropShadowHidden(_atTop, mode, shadow)]]"></div>
 
       </div>
 
@@ -300,24 +300,18 @@ Use `mode` to control the header and scrolling behavior.
           value: true
         },
 
-        _dropShadowClass: {
-          computed: 'computeDropShadowClass(_atTop, mode, shadow)'
-        },
-
         _mainContainerClass: {
           computed: 'computeMainContainerClass(mode)'
         }
 
       },
 
-      computeDropShadowClass: function(_atTop, mode, shadow) {
+      _computeDropShadowHidden: function(_atTop, mode, shadow) {
         var needsShadow = _atTop &&
           MODE_CONFIGS.shadowMode[this.mode] ||
           MODE_CONFIGS.noShadow[this.mode];
 
-        return classNames({
-          hidden: !this.shadow && needsShadow
-        });
+        return !this.shadow && needsShadow;
       },
 
       computeMainContainerClass: function(mode) {
