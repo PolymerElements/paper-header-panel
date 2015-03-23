@@ -16,5 +16,9 @@
   "repo": {
     "type": "git",
     "url": "git://github.com/Polymer/core-header-panel.git"
+  },
+  "devDependencies": {
+    "test-fixture": "Polymer/test-fixture#master",
+    "web-component-tester": "Polymer/web-component-tester#master"
   }
 }
