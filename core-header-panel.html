@@ -294,9 +294,7 @@ Use `mode` to control the header and scrolling behavior.
       },
 
       _computeDropShadowHidden: function(_atTop, mode, shadow) {
-        var needsShadow = _atTop &&
-          MODE_CONFIGS.shadowMode[this.mode] ||
-          MODE_CONFIGS.noShadow[this.mode];
+        var needsShadow = _atTop && MODE_CONFIGS.shadowMode[mode] || MODE_CONFIGS.noShadow[mode];
 
         return !this.shadow && needsShadow;
       },
