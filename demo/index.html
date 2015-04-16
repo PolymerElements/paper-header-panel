@@ -11,10 +11,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <html>
 
   <head>
-    <title>core-header-panel</title>
+    <title>paper-header-panel demo</title>
 
     <script src="../../webcomponentsjs/webcomponents.js"></script>
-    <link rel="import" href="../core-header-panel.html">
+    <link rel="import" href="../paper-header-panel.html">
 
     <style>
 
@@ -22,14 +22,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         font-family: sans-serif;
       }
 
-      core-header-panel {
+      paper-header-panel {
         float: left;
         width: 360px;
         height: 400px;
         margin: 5px;
       }
 
-      .core-header {
+      .paper-header {
         height: 60px;
         line-height: 60px;
         font-size: 18px;
@@ -39,11 +39,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         transition: height 0.2s;
       }
 
-      .core-header.tall {
+      .paper-header.tall {
         height: 180px;
       }
 
-      .core-header.medium-tall {
+      .paper-header.medium-tall {
         height: 120px;
       }
 
@@ -58,40 +58,40 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <body>
 
-    <core-header-panel>
-      <div class="core-header">standard</div>
+    <paper-header-panel>
+      <div class="paper-header">standard</div>
       <div class="content"></div>
-    </core-header-panel>
+    </paper-header-panel>
 
-    <core-header-panel mode="seamed">
-      <div class="core-header">seamed</div>
+    <paper-header-panel mode="seamed">
+      <div class="paper-header">seamed</div>
       <div class="content"></div>
-    </core-header-panel>
+    </paper-header-panel>
 
-    <core-header-panel mode="waterfall">
-      <div class="core-header">waterfall</div>
+    <paper-header-panel mode="waterfall">
+      <div class="paper-header">waterfall</div>
       <div class="content"></div>
-    </core-header-panel>
+    </paper-header-panel>
 
-    <core-header-panel mode="waterfall-tall">
-      <div class="core-header">waterfall-tall</div>
+    <paper-header-panel mode="waterfall-tall">
+      <div class="paper-header">waterfall-tall</div>
       <div class="content"></div>
-    </core-header-panel>
+    </paper-header-panel>
 
-    <core-header-panel mode="waterfall-tall" tall-class="medium-tall">
-      <div class="core-header">waterfall-tall (tallClass: medium-tall)</div>
+    <paper-header-panel mode="waterfall-tall" tall-class="medium-tall">
+      <div class="paper-header">waterfall-tall (tallClass: medium-tall)</div>
       <div class="content"></div>
-    </core-header-panel>
+    </paper-header-panel>
 
-    <core-header-panel mode="scroll">
-      <div class="core-header">scroll</div>
+    <paper-header-panel mode="scroll">
+      <div class="paper-header">scroll</div>
       <div class="content"></div>
-    </core-header-panel>
+    </paper-header-panel>
 
-    <core-header-panel mode="cover">
-      <div class="core-header tall">cover</div>
+    <paper-header-panel mode="cover">
+      <div class="paper-header tall">cover</div>
       <div class="content" style="margin: 60px;"></div>
-    </core-header-panel>
+    </paper-header-panel>
 
   </body>
 

@@ -7,23 +7,26 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 
-<!--
-`core-header-panel` contains a header section and a content panel section.
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../paper-styles/layout.html">
 
-__Important:__ The `core-header-panel` will not display if its parent does not have a height.
+<!--
+`paper-header-panel` contains a header section and a content panel section.
+
+__Important:__ The `paper-header-panel` will not display if its parent does not have a height.
 
 Using [layout classes](http://www.polymer-project.org/docs/polymer/layout-attrs.html), you can make
-the `core-header-panel` fill the screen
+the `paper-header-panel` fill the screen
 
     <body class="fullbleed layout vertical">
-      <core-header-panel class="flex">
+      <paper-header-panel class="flex">
         <core-toolbar>
           <div>Hello World!</div>
         </core-toolbar>
-      </core-header-panel>
+      </paper-header-panel>
     </body>
 
-or, if you would prefer to do it in CSS, give `html`, `body`, and `core-header-panel` a height of
+or, if you would prefer to do it in CSS, give `html`, `body`, and `paper-header-panel` a height of
 100%:
 
     html, body {
@@ -31,7 +34,7 @@ or, if you would prefer to do it in CSS, give `html`, `body`, and `core-header-p
       margin: 0;
     }
 
-    core-header-panel {
+    paper-header-panel {
       height: 100%;
     }
 
@@ -40,39 +43,36 @@ header section.
 
 Example:
 
-    <core-header-panel>
+    <paper-header-panel>
       <core-toolbar>Header</core-toolbar>
       <div>Content goes here...</div>
-    </core-header-panel>
+    </paper-header-panel>
 
-If you want to use other than `core-toolbar` for the header, add `core-header` class to that
+If you want to use other than `core-toolbar` for the header, add `paper-header` class to that
 element.
 
 Example:
 
-    <core-header-panel>
-      <div class="core-header">Header</div>
+    <paper-header-panel>
+      <div class="paper-header">Header</div>
       <div>Content goes here...</div>
-    </core-header-panel>
+    </paper-header-panel>
 
 To have the content fit to the main area, use the `fit` class.
 
-    <core-header-panel>
-      <div class="core-header">standard</div>
+    <paper-header-panel>
+      <div class="paper-header">standard</div>
       <div class="content fit">content fits 100% below the header</div>
-    </core-header-panel>
+    </paper-header-panel>
 
 Use `mode` to control the header and scrolling behavior.
 
 @group Polymer Core Elements
-@element core-header-panel
+@element paper-header-panel
 @homepage github.io
 -->
 
-<link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="../layout/layout.html">
-
-<dom-module id="core-header-panel">
+<dom-module id="paper-header-panel">
 
   <style>
     :host {
@@ -145,7 +145,7 @@ Use `mode` to control the header and scrolling behavior.
   <template>
     <div id="outerContainer" class="layout vertical">
 
-      <content id="headerContent" select="core-toolbar, .core-header"></content>
+      <content id="headerContent" select="core-toolbar, .paper-header"></content>
 
       <div id="mainPanel" class="layout vertical flex">
 
@@ -188,16 +188,16 @@ Use `mode` to control the header and scrolling behavior.
 
     Polymer({
 
-      is: 'core-header-panel',
+      is: 'paper-header-panel',
 
       /**
        * Fired when the content has been scrolled.  `event.detail.target` returns
        * the scrollable element which you can use to access scroll info such as
        * `scrollTop`.
        *
-       *     <core-header-panel on-scroll="{{scrollHandler}}">
+       *     <paper-header-panel on-scroll="{{scrollHandler}}">
        *       ...
-       *     </core-header-panel>
+       *     </paper-header-panel>
        *
        *
        *     scrollHandler: function(event) {
@@ -230,12 +230,12 @@ Use `mode` to control the header and scrolling behavior.
          *
          * `scroll`: The header keeps its seam with the panel, and is pushed off screen.
          *
-         * `cover`: The panel covers the whole `core-header-panel` including the
+         * `cover`: The panel covers the whole `paper-header-panel` including the
          * header. This allows user to style the panel in such a way that the panel is
          * partially covering the header.
          *
          *     <style>
-         *       core-header-panel[mode=cover]::shadow #mainContainer {
+         *       paper-header-panel[mode=cover]::shadow #mainContainer {
          *         left: 80px;
          *       }
          *       .content {
@@ -243,12 +243,12 @@ Use `mode` to control the header and scrolling behavior.
          *       }
          *     </style>
          *
-         *     <core-header-panel mode="cover">
+         *     <paper-header-panel mode="cover">
          *       <core-toolbar class="tall">
          *         <core-icon-button icon="menu"></core-icon-button>
          *       </core-toolbar>
          *       <div class="content"></div>
-         *     </core-header-panel>
+         *     </paper-header-panel>
          *
          * @attribute mode
          * @type string

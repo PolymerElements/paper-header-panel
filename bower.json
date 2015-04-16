@@ -1,24 +1,28 @@
 {
-  "name": "core-header-panel",
-  "private": true,
+  "name": "paper-header-panel",
+  "version": "0.8.0",
   "authors": [
     "The Polymer Authors"
   ],
+  "keywords": [
+    "web-components",
+    "web-component",
+    "polymer"
+  ],
+  "main": "index.html",
+  "private": true,
+  "license": "MIT",
+  "homepage": "https://github.com/PolymerElements/paper-header-panel",
+  "ignore": [
+  ],
   "dependencies": {
-    "polymer": "Polymer/polymer#0.8-preview",
-    "layout": "Polymer/layout#master"
+    "polymer": "polymer/polymer#v0.8.0-rc.4",
+    "paper-styles": "PolymerElements/paper-styles#^0.8.0"
   },
   "devDependencies": {
-    "webcomponentsjs": "~0.5.5",
-    "core-component-page": "Polymer/core-component-page#~0.5.5"
-  },
-  "main": "core-header-panel.html",
-  "repo": {
-    "type": "git",
-    "url": "git://github.com/Polymer/core-header-panel.git"
-  },
-  "devDependencies": {
-    "test-fixture": "Polymer/test-fixture#master",
-    "web-component-tester": "Polymer/web-component-tester#master"
+    "webcomponentsjs": "webcomponents/webcomponentsjs#~0.6.1",
+    "web-component-tester": "Polymer/web-component-tester#^2.2.3",
+    "iron-doc-viewer": "PolymerElements/iron-doc-viewer#^0.8.0",
+    "test-fixture": "PolymerElements/test-fixture#^0.8.0"
   }
 }
