@@ -105,20 +105,12 @@ To change the panel container in different modes:
         border: 1px solid gray;
       };
     }
--->
 
-<style is="custom-style">
-  :root {
-    /**
-     * Default paper header panel shadow
-     */
-    --paper-header-panel-shadow: {
-      height: 6px;
-      bottom: -6px;
-      box-shadow: inset 0px 5px 6px -3px rgba(0, 0, 0, 0.4);
-    };
-  }
-</style>
+@group Paper Elements
+@element paper-header-panel
+@demo demo/index.html
+@hero hero.svg
+-->
 
 <dom-module id="paper-header-panel">
 
@@ -237,6 +229,19 @@ To change the panel container in different modes:
   </template>
 
 </dom-module>
+
+<style is="custom-style">
+  :root {
+    /**
+     * Default paper header panel shadow
+     */
+    --paper-header-panel-shadow: {
+      height: 6px;
+      bottom: -6px;
+      box-shadow: inset 0px 5px 6px -3px rgba(0, 0, 0, 0.4);
+    };
+  }
+</style>
 
 <script>
 
