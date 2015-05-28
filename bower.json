@@ -10,7 +10,6 @@
     "polymer",
     "layout"
   ],
-  "main": "index.html",
   "private": true,
   "license": "http://polymer.github.io/LICENSE.txt",
   "homepage": "https://github.com/PolymerElements/paper-header-panel",
