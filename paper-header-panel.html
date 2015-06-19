@@ -352,20 +352,20 @@ To change the panel container in different modes:
         this._keepScrollingState();
       },
 
-      _keepScrollingState: function () {
+      _keepScrollingState: function() {
         var main = this.scroller;
         var header = this.header;
 
         this._setAtTop(main.scrollTop === 0);
 
-        if (header && MODE_CONFIGS.tallMode[this.mode]) {
+        if (header && this.tallClass && MODE_CONFIGS.tallMode[this.mode]) {
           this.toggleClass(this.tallClass, this.atTop ||
               header.classList.contains(this.tallClass) &&
               main.scrollHeight < this.offsetHeight, header);
         }
       },
 
-      _scroll: function(e) {
+      _scroll: function() {
         this._keepScrollingState();
         this.fire('content-scroll', {target: this.scroller}, {bubbles: false});
       },
