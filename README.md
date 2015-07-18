@@ -59,7 +59,7 @@ Mode | Description
 `scroll` | The header keeps its seam with the panel, and is pushed off screen.
 `cover` | The panel covers the whole `paper-header-panel` including the header. This allows user to style the panel in such a way that the panel is partially covering the header.
 
-Example: 
+Example:
 
 ```html
 <paper-header-panel mode="waterfall">
@@ -90,7 +90,7 @@ paper-slider {
     border: 1px solid gray;
   };
 
-  --paper-header-panel-cover-container: {
+  --paper-header-panel-seamed-container: {
     border: 1px solid gray;
   };
 
@@ -99,6 +99,14 @@ paper-slider {
   };
 
   --paper-header-panel-waterfall-tall-container: {
+    border: 1px solid gray;
+  };
+
+  --paper-header-panel-scroll-container: {
+    border: 1px solid gray;
+  };
+
+  --paper-header-panel-cover-container: {
     border: 1px solid gray;
   };
 }
