@@ -101,14 +101,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 #dropShadow {
   @apply(--paper-header-panel-shadow);
 
-  -webkit-transition: opacity 0.5s, -webkit-transform 0.5s;
-  transition: opacity 0.5s, transform 0.5s;
-
-  -webkit-transform: scale3d(1, 0, 1);
-  transform: scale3d(1, 0, 1);
-
-  -webkit-transform-origin: left top;
-  transform-origin: left top;
+  -webkit-transition: opacity 0.5s;
+  transition: opacity 0.5s;
 
   position: absolute;
   top: 0;
@@ -120,7 +114,4 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 #dropShadow.has-shadow {
   opacity: 1;
-
-  -webkit-transform: scale3d(1, 1, 1);
-  transform: scale3d(1, 1, 1);
 }
