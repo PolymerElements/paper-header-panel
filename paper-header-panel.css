@@ -33,7 +33,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 #mainPanel {
   @apply(--layout-vertical);
   @apply(--layout-flex);
-
+  
   position: relative;
 }
 
@@ -101,8 +101,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 #dropShadow {
   @apply(--paper-header-panel-shadow);
 
-  -webkit-transition: opacity 0.5s;
-  transition: opacity 0.5s;
+  -webkit-transition: opacity 0.5s, -webkit-transform 0.5s;
+  transition: opacity 0.5s, transform 0.5s;
+
+  -webkit-transform: scaleY(0);
+  transform: scaleY(0);
+
+  -webkit-transform-origin: left top;
+  transform-origin: left top;
 
   position: absolute;
   top: 0;
@@ -114,4 +120,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 #dropShadow.has-shadow {
   opacity: 1;
+
+  -webkit-transform:  scaleY(1);
+  transform:  scaleY(1);
 }
