@@ -15,17 +15,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   height: 100%;
 }
 
-/**
- * Default paper header panel shadow
- */
-:root {
-  --paper-header-panel-shadow: {
-    height: 6px;
-    bottom: -6px;
-    box-shadow: inset 0px 5px 6px -3px rgba(0, 0, 0, 0.4);
-  };
-}
-
 #mainContainer {
   @apply(--layout-flex);
 
@@ -104,8 +93,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 }
 
 #dropShadow {
-  @apply(--paper-header-panel-shadow);
-
   -webkit-transition: opacity 0.5s, -webkit-transform 0.5s;
   transition: opacity 0.5s, transform 0.5s;
 
@@ -117,10 +104,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   position: absolute;
   top: 0;
+  bottom: -6px;
   left: 0;
   right: 0;
   height: 6px;
   opacity: 0;
+  
+  box-shadow: inset 0px 5px 6px -3px rgba(0, 0, 0, 0.4);
+  
+  @apply(--paper-header-panel-shadow);
 }
 
 #dropShadow.has-shadow {
