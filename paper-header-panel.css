@@ -104,8 +104,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   -webkit-transition: opacity 0.5s, -webkit-transform 0.5s;
   transition: opacity 0.5s, transform 0.5s;
 
-  -webkit-transform: scale3d(1, 0, 1);
-  transform: scale3d(1, 0, 1);
+  -webkit-transform: scaleY(0);
+  transform: scaleY(0);
 
   -webkit-transform-origin: left top;
   transform-origin: left top;
@@ -121,6 +121,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 #dropShadow.has-shadow {
   opacity: 1;
 
-  -webkit-transform: scale3d(1, 1, 1);
-  transform: scale3d(1, 1, 1);
+  -webkit-transform:  scaleY(1);
+  transform:  scaleY(1);
 }
