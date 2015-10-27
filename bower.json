@@ -10,9 +10,7 @@
     "polymer",
     "layout"
   ],
-  "main": [
-    "paper-header-panel.html"
-  ],
+  "main": "paper-header-panel.html",
   "repository": {
     "type": "git",
     "url": "git://github.com/PolymerElements/paper-header-panel.git"
