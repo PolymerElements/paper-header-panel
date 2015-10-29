@@ -9,6 +9,8 @@ Edit this file, and the bot will squash your changes :)
 
 -->
 
+_[Demo and API Docs](https://elements.polymer-project.org/elements/paper-header-panel)_
+
 
 ##&lt;paper-header-panel&gt;
 
