@@ -9,8 +9,6 @@ Edit this file, and the bot will squash your changes :)
 
 -->
 
-_[Demo and API Docs](https://elements.polymer-project.org/elements/paper-header-panel)_
-
 
 ##&lt;paper-header-panel&gt;
 
@@ -56,7 +54,7 @@ To have the content fit to the main area, use the `fit` class.
       <div class="fit">content fits 100% below the header</div>
     </paper-header-panel>
 
-Modes
+### Modes
 
 Controls header and scrolling behavior. Options are `standard`, `seamed`, `waterfall`, `waterfall-tall`, `scroll` and
 `cover`. Default is `standard`.
@@ -78,7 +76,7 @@ Example:
     </paper-header-panel>
 
 
-Styling header panel:
+### Styling
 
 To change the shadow that shows up underneath the header:
 
