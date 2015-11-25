@@ -360,8 +360,10 @@ To change the panel container in different modes:
 
         ready: function() {
           this.scrollHandler = this._scroll.bind(this);
+        },
+        
+        attached: function() {
           this._addListener();
-
           // Run `scroll` logic once to initialze class names, etc.
           this._keepScrollingState();
         },
