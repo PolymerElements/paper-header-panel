@@ -231,6 +231,10 @@ Custom property | Description | Default
         @apply(--paper-header-panel-waterfall-tall-container);
       }
 
+      :host([mode=seamed]) #dropShadow {
+        display: none;
+      }
+
       #dropShadow {
         @apply(--paper-header-panel-shadow);
 
