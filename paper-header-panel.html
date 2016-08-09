@@ -165,6 +165,12 @@ Custom property | Description | Default
 
         @apply(--paper-header-panel-body);
       }
+      
+      @media print {
+        :host { display: block }
+        #mainContainer { display: block }
+        #mainPanel { display: block }
+      }
 
       /*
        * mode: scroll
