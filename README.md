@@ -19,6 +19,8 @@ _[Demo and API docs](https://elements.polymer-project.org/elements/paper-header-
 
 ##&lt;paper-header-panel&gt;
 
+**This element has been deprecated in favor of [app-layout](https://github.com/PolymerElements/app-layout).**
+
 `paper-header-panel` contains a header section and a content panel section.
 
 __Important:__ The `paper-header-panel` will not display if its parent does not have a height.

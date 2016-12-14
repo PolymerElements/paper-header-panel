@@ -12,6 +12,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
 
 <!--
+**This element has been deprecated in favor of [app-layout](https://github.com/PolymerElements/app-layout).**
+
 `paper-header-panel` contains a header section and a content panel section.
 
 __Important:__ The `paper-header-panel` will not display if its parent does not have a height.
@@ -376,6 +378,10 @@ Custom property | Description | Default
 
         detached: function() {
           this._removeListener();
+        },
+
+        ready: function() {
+          console.warn(this.is, 'is deprecated. Please use app-layout instead!');
         },
 
         /**
