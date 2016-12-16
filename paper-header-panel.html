@@ -239,6 +239,10 @@ Custom property | Description | Default
         @apply(--paper-header-panel-waterfall-tall-container);
       }
 
+      :host([mode=seamed]) #dropShadow {
+        display: none;
+      }
+
       #dropShadow {
         transition: opacity 0.5s;
         height: 6px;
