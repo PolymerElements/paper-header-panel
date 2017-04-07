@@ -3,19 +3,25 @@ sudo: required
 before_script:
   - npm install -g bower polymer-cli@next
   - polymer install --variants
+  - sudo mv /usr/bin/google-chrome /usr/bin/google-chrome-old
+  - sudo mv /usr/bin/google-chrome-beta /usr/bin/google-chrome
 env:
   global:
-    - secure: CUHUUtr+3jdD8NjJ4sNO4ubf2wKTWlcff8hBrEZJsuuVibAWS9uf3+LZWhpk5oI/WXx66/9qEul/Y8GYfDCk9xLOHMhgWhnK0joTfOsLjC1U+D7vECq+eIUMILAjrSZrg1rVlkR/darxmNZugUMjIHu9WiYQkl3tJtBxZmiZME4=
-    - secure: gfWd1g1f/x8Wb4PlCyh/PTOLBFF0edHlb1tQpiexe/z58g4/67GYxnnOTTlwlFBxSeGxTImXzvljF3FqSEMB3RjFMpE401IF0ka5XACXf2DYHuEr4WSTFBFGn4Lep0qAHGE1zf6vZPwNCNPeyOQrVpg8IlhMVDWedzBzFZ/Z/DE=
-node_js: '6'
+    - secure: >-
+        CUHUUtr+3jdD8NjJ4sNO4ubf2wKTWlcff8hBrEZJsuuVibAWS9uf3+LZWhpk5oI/WXx66/9qEul/Y8GYfDCk9xLOHMhgWhnK0joTfOsLjC1U+D7vECq+eIUMILAjrSZrg1rVlkR/darxmNZugUMjIHu9WiYQkl3tJtBxZmiZME4=
+    - secure: >-
+        gfWd1g1f/x8Wb4PlCyh/PTOLBFF0edHlb1tQpiexe/z58g4/67GYxnnOTTlwlFBxSeGxTImXzvljF3FqSEMB3RjFMpE401IF0ka5XACXf2DYHuEr4WSTFBFGn4Lep0qAHGE1zf6vZPwNCNPeyOQrVpg8IlhMVDWedzBzFZ/Z/DE=
+node_js: stable
 addons:
   firefox: latest
   apt:
     sources:
       - google-chrome
     packages:
-      - google-chrome-stable
+      - google-chrome-beta
 script:
   - xvfb-run polymer test
-  - 'if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then polymer test -s ''default''; fi'
+  - >-
+    if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then polymer test -s 'default';
+    fi
 dist: trusty
