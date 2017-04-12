@@ -51,7 +51,7 @@ Example:
 
     <paper-header-panel>
       <div slot="header">standard</div>
-      <div slot="content fit">content fits 100% below the header</div>
+      <div slot="content" class="fit">content fits 100% below the header</div>
     </paper-header-panel>
 
 ### Modes
