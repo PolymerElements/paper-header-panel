@@ -17,7 +17,7 @@ thing! https://github.com/PolymerLabs/tedium/issues
 _[Demo and API docs](https://elements.polymer-project.org/elements/paper-header-panel)_
 
 
-##&lt;paper-header-panel&gt;
+## &lt;paper-header-panel&gt;
 
 **This element has been deprecated in favor of [app-layout](https://github.com/PolymerElements/app-layout).**
 
@@ -42,7 +42,7 @@ Example:
 
     <paper-header-panel>
       <paper-toolbar slot="header">Header</paper-toolbar>
-      <div slot="content">Content goes here...</div>
+      <div>Content goes here...</div>
     </paper-header-panel>
 
 To have the content fit to the main area, use the `fit` class.
@@ -51,7 +51,7 @@ Example:
 
     <paper-header-panel>
       <div slot="header">standard</div>
-      <div slot="content" class="fit">content fits 100% below the header</div>
+      <div class="fit">content fits 100% below the header</div>
     </paper-header-panel>
 
 ### Modes
@@ -129,3 +129,12 @@ Custom property | Description | Default
 `--paper-header-panel-waterfall-container` | Mixin applied to the container when in waterfall mode | `{}`
 `--paper-header-panel-waterfall-tall-container` | Mixin applied to the container when in tall waterfall mode | `{}`
 `--paper-header-panel-shadow` | Mixin applied to the waterfall shadow | `{}`
+
+### Changes in 2.0
+
+Distribution of the header is now done with `slot="header"` attribute (previously, `paper-toolbar` or another element with the `.paper-header` class would be distributed):
+
+    <paper-header-panel>
+      <paper-toolbar slot="header">Header</paper-toolbar>
+      <div>Content goes here...</div>
+    </paper-header-panel>

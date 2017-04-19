@@ -35,7 +35,7 @@ Example:
 
     <paper-header-panel>
       <paper-toolbar slot="header">Header</paper-toolbar>
-      <div slot="content">Content goes here...</div>
+      <div>Content goes here...</div>
     </paper-header-panel>
 
 To have the content fit to the main area, use the `fit` class.
@@ -44,7 +44,7 @@ Example:
 
     <paper-header-panel>
       <div slot="header">standard</div>
-      <div slot="content" class="fit">content fits 100% below the header</div>
+      <div class="fit">content fits 100% below the header</div>
     </paper-header-panel>
 
 ### Modes
@@ -245,7 +245,7 @@ Custom property | Description | Default
 
     <div id="mainPanel">
       <div id="mainContainer" class$="[[_computeMainContainerClass(mode)]]">
-        <slot name="content"></slot>
+        <slot></slot>
       </div>
       <div id="dropShadow"></div>
     </div>
@@ -323,7 +323,7 @@ Custom property | Description | Default
            *       <paper-toolbar slot="header" class="tall">
            *         <paper-icon-button icon="menu"></paper-icon-button>
            *       </paper-toolbar>
-           *       <div slot="content"></div>
+           *       <div></div>
            *     </paper-header-panel>
            */
           mode: {
