@@ -1,0 +1,10 @@
+{
+  "name": "@polymer/paper-header-panel",
+  "private": true,
+  "description": "A header and content wrapper for layout with headers",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/PolymerElements/paper-header-panel.git"
+  },
+  "license": "http://polymer.github.io/LICENSE.txt"
+}
