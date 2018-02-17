@@ -177,27 +177,27 @@ interface PaperHeaderPanelElement extends Polymer.Element {
   /**
    * Returns the header element
    */
-  header: object|null;
+  readonly header: any;
 
   /**
    * Returns the scrollable element.
    */
-  scroller: object|null;
+  readonly scroller: any;
 
   /**
    * Returns true if the scroller has a visible shadow.
    */
-  visibleShadow: object|null;
-  attached(): any;
-  detached(): any;
-  ready(): any;
-  _computeDropShadowHidden(atTop: any, mode: any, shadow: any): any;
+  readonly visibleShadow: any;
+  attached(): void;
+  detached(): void;
+  ready(): void;
+  _computeDropShadowHidden(atTop: any, mode: any, shadow: any): void;
   _computeMainContainerClass(mode: any): any;
-  _addListener(): any;
-  _removeListener(): any;
-  _modeChanged(newMode: any, oldMode: any): any;
-  _keepScrollingState(): any;
-  _scroll(): any;
+  _addListener(): void;
+  _removeListener(): void;
+  _modeChanged(newMode: any, oldMode: any): void;
+  _keepScrollingState(): void;
+  _scroll(): void;
   _getScrollerForMode(mode: any): any;
 }
 
