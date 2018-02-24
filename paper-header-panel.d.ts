@@ -177,17 +177,17 @@ interface PaperHeaderPanelElement extends Polymer.Element {
   /**
    * Returns the header element
    */
-  readonly header: any;
+  readonly header: Element|undefined;
 
   /**
    * Returns the scrollable element.
    */
-  readonly scroller: any;
+  readonly scroller: HTMLElement;
 
   /**
    * Returns true if the scroller has a visible shadow.
    */
-  readonly visibleShadow: any;
+  readonly visibleShadow: boolean;
   attached(): void;
   detached(): void;
   ready(): void;
