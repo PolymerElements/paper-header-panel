@@ -1,21 +1,6 @@
-
-<!---
-
-This README is automatically generated from the comments in these files:
-paper-header-panel.html
-
-Edit those files, and our readme bot will duplicate them over here!
-Edit this file, and the bot will squash your changes :)
-
-The bot does some handling of markdown. Please file a bug if it does the wrong
-thing! https://github.com/PolymerLabs/tedium/issues
-
--->
-
+[![Published on NPM](https://img.shields.io/npm/v/@polymer/paper-header-panel.svg)](https://www.npmjs.com/package/@polymer/paper-header-panel)
 [![Build status](https://travis-ci.org/PolymerElements/paper-header-panel.svg?branch=master)](https://travis-ci.org/PolymerElements/paper-header-panel)
-
-_[Demo and API docs](https://elements.polymer-project.org/elements/paper-header-panel)_
-
+[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://webcomponents.org/element/@polymer/paper-header-panel)
 
 ## &lt;paper-header-panel&gt;
 
@@ -24,35 +9,6 @@ _[Demo and API docs](https://elements.polymer-project.org/elements/paper-header-
 `paper-header-panel` contains a header section and a content panel section.
 
 __Important:__ The `paper-header-panel` will not display if its parent does not have a height.
-
-Using layout classes, you can make the `paper-header-panel` fill the screen
-
-    <body class="fullbleed layout vertical">
-      <paper-header-panel class="flex">
-        <paper-toolbar slot="header">
-          <div>Hello World!</div>
-        </paper-toolbar>
-      </paper-header-panel>
-    </body>
-
-Special support is provided for scrolling modes when one uses a paper-toolbar or equivalent for the
-header section.
-
-Example:
-
-    <paper-header-panel>
-      <paper-toolbar slot="header">Header</paper-toolbar>
-      <div>Content goes here...</div>
-    </paper-header-panel>
-
-To have the content fit to the main area, use the `fit` class.
-
-Example:
-
-    <paper-header-panel>
-      <div slot="header">standard</div>
-      <div class="fit">content fits 100% below the header</div>
-    </paper-header-panel>
 
 ### Modes
 
@@ -130,11 +86,84 @@ Custom property | Description | Default
 `--paper-header-panel-waterfall-tall-container` | Mixin applied to the container when in tall waterfall mode | `{}`
 `--paper-header-panel-shadow` | Mixin applied to the waterfall shadow | `{}`
 
-### Changes in 2.0
+See: [Documentation](https://www.webcomponents.org/element/@polymer/paper-header-panel),
+  [Demo](https://www.webcomponents.org/element/@polymer/paper-header-panel/demo/demo/index.html).
 
-Distribution of the header is now done with `slot="header"` attribute (previously, `paper-toolbar` or another element with the `.paper-header` class would be distributed):
+## Usage
 
+### Installation
+```
+npm install --save @polymer/paper-header-panel
+```
+
+### In an html file
+```html
+<html>
+  <head>
+    <script type="module">
+      import '@polymer/paper-header-panel/paper-header-panel.js';
+      import '@polymer/paper-toolbar/paper-toolbar.js';
+    </script>
+    <style>
+      html, body {
+        margin: 0;
+      }
+      paper-header-panel {
+        height: 100vh;
+      }
+    </style>
+  </head>
+  <body>
     <paper-header-panel>
       <paper-toolbar slot="header">Header</paper-toolbar>
       <div>Content goes here...</div>
     </paper-header-panel>
+  </body>
+</html>
+```
+### In a Polymer 3 element
+```js
+import {PolymerElement, html} from '@polymer/polymer';
+import '@polymer/paper-header-panel/paper-header-panel.js';
+import '@polymer/paper-toolbar/paper-toolbar.js';
+
+class SampleElement extends PolymerElement {
+  static get template() {
+    return html`
+      <style>
+        paper-header-panel {
+          height: 100vh;
+        }
+      </style>
+      <paper-header-panel>
+        <paper-toolbar slot="header">Header</paper-toolbar>
+        <div>Content goes here...</div>
+      </paper-header-panel>
+    `;
+  }
+}
+customElements.define('sample-element', SampleElement);
+```
+
+## Contributing
+If you want to send a PR to this element, here are
+the instructions for running the tests and demo locally:
+
+### Installation
+```sh
+git clone https://github.com/PolymerElements/paper-header-panel
+cd paper-header-panel
+npm install
+npm install -g polymer-cli
+```
+
+### Running the demo locally
+```sh
+polymer serve --npm
+open http://127.0.0.1:<port>/demo/
+```
+
+### Running the tests
+```sh
+polymer test --npm
+```
