@@ -263,7 +263,7 @@ Polymer({
     <slot id="headerSlot" name="header"></slot>
 
     <div id="mainPanel">
-      <div id="mainContainer" class\$="[[_computeMainContainerClass(mode)]]">
+      <div id="mainContainer" class$="[[_computeMainContainerClass(mode)]]">
         <slot></slot>
       </div>
       <div id="dropShadow"></div>
