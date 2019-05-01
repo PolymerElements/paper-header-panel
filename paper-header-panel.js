@@ -375,7 +375,11 @@ Polymer({
    * @return {!Element|undefined}
    */
   get header() {
-    return dom(this.$.headerSlot).getDistributedNodes()[0];
+    var header = dom(this.$.headerSlot).getDistributedNodes()[0];
+    if (!header) {
+      return undefined;
+    }
+    return /** @type {!Element}*/ (header);
   },
 
   /**
