@@ -143,12 +143,11 @@ Custom property | Description | Default
 `--paper-header-panel-waterfall-tall-container` | Mixin applied to the container when in tall waterfall mode | `{}`
 `--paper-header-panel-shadow` | Mixin applied to the waterfall shadow | `{}`
 
-@group Paper Elements
 @element paper-header-panel
 @demo demo/index.html
-@hero hero.svg
 */
 Polymer({
+  /** @override */
   _template: html`
     <style>
       :host {
@@ -355,16 +354,19 @@ Polymer({
 
   observers: ['_computeDropShadowHidden(atTop, mode, shadow)'],
 
+  /** @override */
   attached: function() {
     this._addListener();
     // Run `scroll` logic once to initialize class names, etc.
     this._keepScrollingState();
   },
 
+  /** @override */
   detached: function() {
     this._removeListener();
   },
 
+  /** @override */
   ready: function() {
     this.scrollHandler = this._scroll.bind(this);
     console.warn(this.is, 'is deprecated. Please use app-layout instead!');
